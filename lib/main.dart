@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:coffee_app/widgets/button.dart';
+import 'package:coffee_app/screens/create_entry_screen.dart';
+import 'package:coffee_app/screens/view_entry_screen.dart';
+import 'package:coffee_app/screens/edit_entry_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,97 +30,39 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Home')),
       body: Center(
           child: Column(
-        children: [
-          const Text('Welcome to the Coffee App'),
-          Button(
-            buttonText: "Create Entries",
-            onPressed: () {
-              // Navigate to the CoffeeDetailsScreen when the button is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CreateEntryScreen()),
-              );
-            },
-          ),
-          Button(
-            buttonText: "View Entries",
-            onPressed: () {
-              // Navigate to the CoffeeDetailsScreen when the button is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ViewEntryScreen()),
-              );
-            },
-          ),
-          Button(
-            buttonText: "Edit Entries",
-            onPressed: () {
-              // Navigate to the CoffeeDetailsScreen when the button is pressed
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => EditEntryScreen()));
-            },
-          ),
-        ],
-      )),
-    );
-  }
-}
-
-class ViewEntryScreen extends StatelessWidget {
-  ViewEntryScreen({Key? key}) : super(key: key); // Added Key parameter
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('View Entries')),
-      body: const Center(child: Text('database entries to be displayed')),
-    );
-  }
-}
-
-class CreateEntryScreen extends StatelessWidget {
-  CreateEntryScreen({Key? key}) : super(key: key); // Added Key parameter
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Create Entries')),
-      body: const Center(
-          child: Text('form displayed here to create new entries')),
-    );
-  }
-}
-
-class EditEntryScreen extends StatelessWidget {
-  EditEntryScreen({Key? key}) : super(key: key); // Added Key parameter
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Edit Entries')),
-      body:
-          const Center(child: Text('form here to edit existing entries in db')),
-    );
-  }
-}
-
-// Custom button implementation
-class Button extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onPressed;
-
-  const Button({required this.buttonText, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: ElevatedButton(
-        onPressed: onPressed, // Assign the passed onPressed function
-        child: Center(
-          child: Text(buttonText), // Display the passed button text
-        ),
-      )
+          children: [
+            const Text('Welcome to the Coffee App'),
+            Button(
+              buttonText: "Create Entries",
+              onPressed: () {
+                // Navigate to the CoffeeDetailsScreen when the button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreateEntryScreen()),
+                );
+              },
+            ),
+            Button(
+              buttonText: "View Entries",
+              onPressed: () {
+                // Navigate to the CoffeeDetailsScreen when the button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewEntryScreen()),
+                );
+              },
+            ),
+            Button(
+              buttonText: "Edit Entries",
+              onPressed: () {
+                // Navigate to the CoffeeDetailsScreen when the button is pressed
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EditEntryScreen()));
+              },
+            ),
+          ],
+        )
+      ),
     );
   }
 }
