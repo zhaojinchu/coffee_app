@@ -11,7 +11,7 @@ class CoffeeInfo extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
   TextColumn get tastingNotes => text()();
-  RealColumn get rating => real()();
+  IntColumn get rating => integer()();
 
 }
 
@@ -27,6 +27,5 @@ class Db extends _$Db {
     final folder = await getApplicationDocumentsDirectory();
     final file = File(p.join(folder.path, 'db.sqlite'));
     return NativeDatabase(file);
-  });
-}
+  });}
 }

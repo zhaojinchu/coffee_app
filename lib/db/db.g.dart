@@ -31,9 +31,9 @@ class $CoffeeInfoTable extends CoffeeInfo
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _ratingMeta = const VerificationMeta('rating');
   @override
-  late final GeneratedColumn<double> rating = GeneratedColumn<double>(
+  late final GeneratedColumn<int> rating = GeneratedColumn<int>(
       'rating', aliasedName, false,
-      type: DriftSqlType.double, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, name, tastingNotes, rating];
   @override
@@ -85,7 +85,7 @@ class $CoffeeInfoTable extends CoffeeInfo
       tastingNotes: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}tasting_notes'])!,
       rating: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}rating'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}rating'])!,
     );
   }
 
@@ -99,7 +99,7 @@ class CoffeeInfoData extends DataClass implements Insertable<CoffeeInfoData> {
   final int id;
   final String name;
   final String tastingNotes;
-  final double rating;
+  final int rating;
   const CoffeeInfoData(
       {required this.id,
       required this.name,
@@ -111,7 +111,7 @@ class CoffeeInfoData extends DataClass implements Insertable<CoffeeInfoData> {
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['tasting_notes'] = Variable<String>(tastingNotes);
-    map['rating'] = Variable<double>(rating);
+    map['rating'] = Variable<int>(rating);
     return map;
   }
 
@@ -131,7 +131,7 @@ class CoffeeInfoData extends DataClass implements Insertable<CoffeeInfoData> {
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       tastingNotes: serializer.fromJson<String>(json['tastingNotes']),
-      rating: serializer.fromJson<double>(json['rating']),
+      rating: serializer.fromJson<int>(json['rating']),
     );
   }
   @override
@@ -141,12 +141,12 @@ class CoffeeInfoData extends DataClass implements Insertable<CoffeeInfoData> {
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
       'tastingNotes': serializer.toJson<String>(tastingNotes),
-      'rating': serializer.toJson<double>(rating),
+      'rating': serializer.toJson<int>(rating),
     };
   }
 
   CoffeeInfoData copyWith(
-          {int? id, String? name, String? tastingNotes, double? rating}) =>
+          {int? id, String? name, String? tastingNotes, int? rating}) =>
       CoffeeInfoData(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -191,7 +191,7 @@ class CoffeeInfoCompanion extends UpdateCompanion<CoffeeInfoData> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> tastingNotes;
-  final Value<double> rating;
+  final Value<int> rating;
   const CoffeeInfoCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -202,7 +202,7 @@ class CoffeeInfoCompanion extends UpdateCompanion<CoffeeInfoData> {
     this.id = const Value.absent(),
     required String name,
     required String tastingNotes,
-    required double rating,
+    required int rating,
   })  : name = Value(name),
         tastingNotes = Value(tastingNotes),
         rating = Value(rating);
@@ -210,7 +210,7 @@ class CoffeeInfoCompanion extends UpdateCompanion<CoffeeInfoData> {
     Expression<int>? id,
     Expression<String>? name,
     Expression<String>? tastingNotes,
-    Expression<double>? rating,
+    Expression<int>? rating,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -224,7 +224,7 @@ class CoffeeInfoCompanion extends UpdateCompanion<CoffeeInfoData> {
       {Value<int>? id,
       Value<String>? name,
       Value<String>? tastingNotes,
-      Value<double>? rating}) {
+      Value<int>? rating}) {
     return CoffeeInfoCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -246,7 +246,7 @@ class CoffeeInfoCompanion extends UpdateCompanion<CoffeeInfoData> {
       map['tasting_notes'] = Variable<String>(tastingNotes.value);
     }
     if (rating.present) {
-      map['rating'] = Variable<double>(rating.value);
+      map['rating'] = Variable<int>(rating.value);
     }
     return map;
   }
@@ -278,13 +278,13 @@ typedef $$CoffeeInfoTableCreateCompanionBuilder = CoffeeInfoCompanion Function({
   Value<int> id,
   required String name,
   required String tastingNotes,
-  required double rating,
+  required int rating,
 });
 typedef $$CoffeeInfoTableUpdateCompanionBuilder = CoffeeInfoCompanion Function({
   Value<int> id,
   Value<String> name,
   Value<String> tastingNotes,
-  Value<double> rating,
+  Value<int> rating,
 });
 
 class $$CoffeeInfoTableFilterComposer extends Composer<_$Db, $CoffeeInfoTable> {
@@ -304,7 +304,7 @@ class $$CoffeeInfoTableFilterComposer extends Composer<_$Db, $CoffeeInfoTable> {
   ColumnFilters<String> get tastingNotes => $composableBuilder(
       column: $table.tastingNotes, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<double> get rating => $composableBuilder(
+  ColumnFilters<int> get rating => $composableBuilder(
       column: $table.rating, builder: (column) => ColumnFilters(column));
 }
 
@@ -327,7 +327,7 @@ class $$CoffeeInfoTableOrderingComposer
       column: $table.tastingNotes,
       builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<double> get rating => $composableBuilder(
+  ColumnOrderings<int> get rating => $composableBuilder(
       column: $table.rating, builder: (column) => ColumnOrderings(column));
 }
 
@@ -349,7 +349,7 @@ class $$CoffeeInfoTableAnnotationComposer
   GeneratedColumn<String> get tastingNotes => $composableBuilder(
       column: $table.tastingNotes, builder: (column) => column);
 
-  GeneratedColumn<double> get rating =>
+  GeneratedColumn<int> get rating =>
       $composableBuilder(column: $table.rating, builder: (column) => column);
 }
 
@@ -379,7 +379,7 @@ class $$CoffeeInfoTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<String> name = const Value.absent(),
             Value<String> tastingNotes = const Value.absent(),
-            Value<double> rating = const Value.absent(),
+            Value<int> rating = const Value.absent(),
           }) =>
               CoffeeInfoCompanion(
             id: id,
@@ -391,7 +391,7 @@ class $$CoffeeInfoTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             required String name,
             required String tastingNotes,
-            required double rating,
+            required int rating,
           }) =>
               CoffeeInfoCompanion.insert(
             id: id,
