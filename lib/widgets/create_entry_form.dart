@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:coffee_app/db/db.dart';
 
+//TODO: Add validation for ratings (only 1-10)
+//TODO: Add graphic UI stuff: stars widget to select rating
+
 class CreateEntryForm extends StatefulWidget {
   const CreateEntryForm({super.key});
 

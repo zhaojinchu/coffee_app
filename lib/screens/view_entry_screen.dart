@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:coffee_app/widgets/entries_list.dart';
+import 'package:coffee_app/db/db.dart';
 
 class ViewEntryScreen extends StatelessWidget {
   ViewEntryScreen({Key? key}) : super(key: key); // Added Key parameter

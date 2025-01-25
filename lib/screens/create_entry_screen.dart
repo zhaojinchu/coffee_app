@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:coffee_app/widgets/create_entry_form.dart';
 
+// TODO: Make frontend all formatted the same. Same margins, padding, spacing
+
 class CreateEntryScreen extends StatelessWidget {
   CreateEntryScreen({Key? key}) : super(key: key); // Added Key parameter
 

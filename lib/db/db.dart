@@ -11,6 +11,7 @@ class CoffeeInfo extends Table {
   TextColumn get name => text()();
   TextColumn get tastingNotes => text()();
   IntColumn get rating => integer()();
+  // TODO: Add country field, and look at other stuff to add
 }
 
 @DriftDatabase(tables: [CoffeeInfo])
@@ -34,6 +35,8 @@ class Db extends _$Db {
     });
   }
 
+
+  // Query Methods
   Future<List<CoffeeInfoData>> getSortedEntriesByName() async {
     try {
       print('Executing query: SELECT * FROM coffee_info ORDER BY name ASC');
@@ -57,6 +60,23 @@ class Db extends _$Db {
       return [];
     }
   }
+
+  Future<void> updateCoffeeEntry(CoffeeInfoCompanion updatedEntry) async {
+    try {
+      // Perform the update operation
+      await (update(coffeeInfo)
+            ..where((tbl) => tbl.id.equals(updatedEntry.id.value)))
+          .write(updatedEntry);
+
+      print('Entry updated successfully: $updatedEntry');
+    } catch (e) {
+      print('Error updating entry: $e');
+      rethrow; // Re-throw the error to be handled by the caller
+    }
+  }
+
+
+
 
   // Debugging methods
   Future<void> checkDatabaseExists() async {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:coffee_app/db/db.dart';
 
+// TODO: Add better graphical UI. Maybe some sort of selection method, where only one record is displayed at one time.
+// TODO: Add visual representations. Eg, country flags, stars for rating, other....
+
 class EntriesList extends StatefulWidget {
   const EntriesList({super.key});
 
